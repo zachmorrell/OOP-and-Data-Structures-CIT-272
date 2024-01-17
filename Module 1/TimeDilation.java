@@ -1,5 +1,8 @@
+// Import for the Scanner to receive user input.
 import java.util.Scanner;
+// Import for math functions such as pow and square root.
 import java.lang.Math;
+// Class for the Java file.
 public class TimeDilation {
 
     public static void main(String[] args) {
@@ -28,25 +31,26 @@ public class TimeDilation {
             String user_response = get_user_input("Enter the decimal percentage of the speed of light that the space traveler is traveling at: ", user_input);
             // Check if input is or can be converted to a double, if it is valid_input = true and we escape the while loop.
             if(is_double(user_response)) {
-                percentage_velocity = Double.parseDouble(user_response);
-                valid_input = true;
-            } else {
+                if(Double.parseDouble(user_response) > 0 && Double.parseDouble(user_response) < 1) {
+                    percentage_velocity = Double.parseDouble(user_response);
+                    // No need to set valid_input to true, break from loop so it can be used in the next check.
+                    break;
+                }
+            }
             // If the input is not a boolean or cannot be converted to a double, then output an error message.
             System.out.println("The decimal velocity requires a DECIMAL between 0 and 1.");
-            }
         }
-        valid_input=false;
         // Input validation for time input.
         while (!valid_input) {
             String user_response = get_user_input("Enter the amount of time that has passed for the space traveler: ", user_input);
             //If it is an integer or can be converted to a double then escape the while loop.
             if(is_double(user_response)) {
                 t = Double.parseDouble(user_response);
-                valid_input = true;
-            } else {
+                // Break the loop to save 1 line of code before this valid_input check..
+                break;
+            }
                 // If the input is not valid give this error message and loop back to requesting user input.
                 System.out.println("The amount of time can only be an integer/number.");
-            }
         }
 
         // Get units of time used by the traveler and observer.
@@ -82,15 +86,15 @@ public class TimeDilation {
     public static boolean is_double(String check_string) {
         try{
             // If it can or is a double, return true.
-            Double result = Double.parseDouble(check_string);
+            Double.parseDouble(check_string);
             return true;
-            // 
+            // If it cannot be converted to a double return false.
         } catch(Exception e) {
             return false;
         }
     }
 
-    // Time dilation equation: to = t/
+    // Time dilation equation: t(observer) = t/ math.sqrt(1-(v/c)^2)
     public static Double calculate_observer_time(Double t, Double v, Double c){
         // V/C
         Double v_over_c = v/c;
@@ -98,7 +102,9 @@ public class TimeDilation {
         v_over_c = v_over_c * v_over_c;
         // 1-(v/c)^2
         Double denominator = Math.sqrt(1-v_over_c);
+        // t observer = t/denominator
         Double _return = t/denominator;
+        // return the output of the calculation.
         return _return;
     }
 }
