@@ -1,3 +1,13 @@
+"""
+Zachary Morrell
+CIT 272 OOP and Data Structures
+Module 1 exercise - Python and Java
+Professor Jeremy Doolin
+
+This program calculates Time Dialation for an object traveling through space and the observer.
+
+"""
+
 import math
 def main():
     # The constant or c, which is the speed of light.

@@ -1,3 +1,14 @@
+/*
+ * 
+ * Zachary Morrell
+ * CIT 272 OOP and Data Structures
+ * Module 1 exercise - Python and Java
+ * Professor Jeremy Doolin
+ * 
+ * This program calculates the time for an object traveling through space and the observer.
+ * 
+ */
+
 // Import for the Scanner to receive user input.
 import java.util.Scanner;
 // Import for math functions such as pow and square root.
