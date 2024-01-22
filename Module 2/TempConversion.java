@@ -47,6 +47,9 @@ public class TempConversion {
     public static void print_results(double fahrenheit, double celsius, double kelvin) {
         // (%) Beginning of farmat specifier, (.2) is the decimal place, and (f) is the datatype or float in my case.
         String formatted_string = String.format("Farenheit: %.2f\nCelsius: %.2f\nKelvin: %.2f",fahrenheit, celsius, kelvin);
+        if(kelvin < 0) {
+            formatted_string = String.format("Farenheit: %.2f\nCelsius: %.2f\nKelvin: Invalid temperature. Cannot be below absolute zero.",fahrenheit, celsius);        
+        }
         System.out.println(formatted_string);
     }
 }
