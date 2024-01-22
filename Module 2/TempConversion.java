@@ -11,7 +11,7 @@ public class TempConversion {
             String input = user_input.nextLine();
             handle_input(input);
         } while(running);
-        
+        // Close the scanner input stream.
         user_input.close();
         
     }
@@ -19,7 +19,7 @@ public class TempConversion {
     public static void handle_input(String input) {
         switch (input) {
             case "quit":
-            running = false;              
+                running = false;              
                 break;
         
             default:
@@ -46,7 +46,7 @@ public class TempConversion {
     // Print the resultant conversions of the input Fahrenheit.
     public static void print_results(double fahrenheit, double celsius, double kelvin) {
         // (%) Beginning of farmat specifier, (.2) is the decimal place, and (f) is the datatype or float in my case.
-        String formatted_string = String.format("Farenheit: %.2f\nCelsius: %.2f\nKelvin: %.2f",fahrenheit, celsius, kelvin);
+        String formatted_string = String.format("Farenheit: %.2f\nCelsius: %.2f\nKelvin: %.2f",fahrenheit, celsius, kelvin);;
         if(kelvin < 0) {
             formatted_string = String.format("Farenheit: %.2f\nCelsius: %.2f\nKelvin: Invalid temperature. Cannot be below absolute zero.",fahrenheit, celsius);        
         }
