@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Temperature_Conversion {
+public class TempConversion {
     static Boolean running = true;
     public static void main(String[] args) {
         System.out.println("\nThis program converts Fahrenheit to both Celsius and Kelvin.\nUse quit to exit this program.\n");
