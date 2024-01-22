@@ -1,5 +1,14 @@
 import java.util.Scanner;
 
+/*
+ * This program converts Fahrenheit temperatures to  Celsius and Kelvin.
+ * 
+ * Author: Zachary Morrell
+ * Assignment: Module 2 Exercise: Temperature Conversion
+ * Date: 1/22/2024
+ * Professor: Jeremy Doolin
+ */
+
 public class TempConversion {
     static Boolean running = true;
     public static void main(String[] args) {
