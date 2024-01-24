@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class Calculator {
     public static void main(String[] args) {
-        Scanner command = new Scanner(System.in);
+        command = new Scanner(System.in);
         boolean running = true;
 
         print_program_details();
@@ -21,6 +21,7 @@ public class Calculator {
             // Milestone 1 - REQ 4.)
             if(user_equation.equals("exit")) {
                 running = false;
+                command.close();
             }
             // Milestone 1 - REQ 5.)
             equation = user_equation.split(" ");
@@ -30,6 +31,7 @@ public class Calculator {
     }
     // Global variable to hold the current progress of the equation.
     public static String[] equation;
+    public static Scanner command;
 
     // Returns user input, as text, from the console.
     private static String get_user_input(Scanner command) {
