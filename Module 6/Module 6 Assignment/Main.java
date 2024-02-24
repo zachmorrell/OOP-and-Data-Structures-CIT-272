@@ -17,6 +17,8 @@ public class Main {
         JFrame window = new JFrame("Temp Converter");
         // Killes process on applicatoin close.
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Sets the JMenuBar to the custom menu bar.
+        window.setJMenuBar(new CustomMenuBar());
         // Sizes the application.
         window.setPreferredSize(new Dimension(app_width, app_height));
         // Disable resizing to keep proper layout.
