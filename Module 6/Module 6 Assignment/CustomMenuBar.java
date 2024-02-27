@@ -1,6 +1,5 @@
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,19 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 
-public class MenuPanel extends JPanel {
+public class CustomMenuBar extends JMenuBar {
 
     JDialog dialog;
     JMenuBar menu_bar;
     JMenuItem about, exit;
     InteractionListener interactionListener;
 
-    public MenuPanel() {
-        // setLayout to GridLayout for styling purposes.
-        setLayout(new GridLayout(1,2));
-
+    public CustomMenuBar() {
         //Initialize menu_bar.
         menu_bar = new JMenuBar();
 
@@ -44,11 +39,8 @@ public class MenuPanel extends JPanel {
         file_menu.add(exit);
 
         // Adds the File and Help menus to the menu bar.
-        menu_bar.add(file_menu);
-        menu_bar.add(help_menu);
-
-        // Adds the menu bar to the main frame.
-        add(menu_bar);
+        add(file_menu);
+        add(help_menu);
     }
 
     // Function is responsible for creating and displaying the JDialog for the about menu item.
