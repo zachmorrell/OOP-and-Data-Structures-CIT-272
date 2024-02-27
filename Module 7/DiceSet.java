@@ -19,12 +19,12 @@ public class DiceSet {
 
     // sets the die held attribute to true.
     public void hold(int die) {
-        dice[die].hold(true);
+        dice[die-1].hold(true);
     }
 
     // sets the die held attribute to false.
     public void unHold(int die) {
-        dice[die].hold(false);
+        dice[die-1].hold(false);
     }
 
     // Creates a return string that is easy to read to print the diceset.
