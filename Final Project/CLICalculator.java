@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Jeremy Doolin
  * 
  */
-public class Calculator {
+public class CLICalculator {
     public static void main(String[] args) {
         command = new Scanner(System.in);
         boolean running = true;
