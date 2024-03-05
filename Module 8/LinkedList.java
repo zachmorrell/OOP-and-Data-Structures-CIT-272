@@ -152,8 +152,18 @@ public class LinkedList<T> {
     public String toString(){
         // TODO: Module 8 
         // Similar to size(), but with accumulating the string
+        if(isEmpty()) {
+            return "List is empty.";
+        }
         String output = "";
-        return(output);
+        Node<T> cursor = head;
+        int index = 0;
+        while (cursor != null) {
+            output += "Node: " + index + ", Data: " + cursor.getData() + "\n";
+            cursor = cursor.getNext();
+            index++;
+        }
+        return output;
     }
 
     public void printList(int index) {
