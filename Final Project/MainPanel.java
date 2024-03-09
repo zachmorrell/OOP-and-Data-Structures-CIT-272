@@ -1,9 +1,15 @@
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -13,7 +19,7 @@ public class MainPanel extends JPanel {
         GUICalculator guiCalculator;
 
         // Arrays for the button labels and buttons.
-        final String[] button_labels = {"AC", "<=", "/", "*", "7", "8", "9", "-", "4", "5", "6", "+", "1", "2", "3", "^", "00", "0", "=" };
+        final String[] button_labels = {"AC", "backspace", "divide", "multiply", "7", "8", "9", "subtract", "4", "5", "6", "add", "1", "2", "3", "power", "00", "0", "equals" };
         JButton[] button = new JButton[button_labels.length];
 
         // Expression string and label.
@@ -34,6 +40,8 @@ public class MainPanel extends JPanel {
 
         // Add the GUI expression label to the JPanel using Grid Bag Constraints.
         add_gbc(gui_expression, 0, 0, 4);
+        gui_expression.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+        gui_expression.setForeground(Color.darkGray);
 
         // Initialize the button listener class defined below.
         ButtonListener buttonListener = new ButtonListener();
@@ -45,7 +53,16 @@ public class MainPanel extends JPanel {
             Add to the JPanel using grid bag constraints.
         */
         for (int i = 0; i < button.length; i++){
-            button[i] = new JButton(button_labels[i]);
+            Image icon;
+            try {
+                System.out.println(button_labels[i]);
+                icon = ImageIO.read(getClass().getResource("assets/img/"+button_labels[i]+".png"));
+                button[i] = new JButton(new ImageIcon(icon));
+                button[i].setActionCommand(button_labels[i]);
+                button[i].setBackground(Color.YELLOW);
+            } catch (Exception ex) {
+                System.out.println("Image Not found.");
+            }
             button[i].addActionListener(buttonListener);
             add_gbc(button[i], get_column(i), get_row(i+1), 1);
         }
@@ -73,9 +90,11 @@ public class MainPanel extends JPanel {
     // Modifies the expression based on button or key pressed.
     public void handle_button_press(String s) {
         try {
+            System.out.println(s);
             switch (s) {
                 // Backspace
                 case "<=":
+                case "backspace":
                     backspace();               
                     break;
                 // All Clear
@@ -83,6 +102,11 @@ public class MainPanel extends JPanel {
                     expression = "0";
                     break;
                 // Operators
+                case "divide":
+                case "multiply":
+                case "subtract":
+                case "add":
+                case "power":
                 case "/":
                 case "*":
                 case "-":
@@ -91,7 +115,7 @@ public class MainPanel extends JPanel {
                     handle_operator(s);
                     break;
                 // Equals
-                case "=":
+                case "equals":
                     calculate_expression();
                     break;
                 // Zero handling, not supporting doubles currently and 10 + 01 is annoying to look at.
@@ -116,9 +140,17 @@ public class MainPanel extends JPanel {
 
     private void handle_operator(String s) {
         // If a space is present than an operator is present, remove it.
+        HashMap<String, String> operators = new HashMap<String, String>() {{
+        put("divide", "/");
+        put("multiply", "*");
+        put("subtract", "-");
+        put("add", "+");
+        put("power", "^");
+    }};
         if(last_char_space()) {
             backspace();
         }
+        s = (s.length() > 1) ? operators.get(s) : s;
         expression += " " + s + " ";
     }
 
