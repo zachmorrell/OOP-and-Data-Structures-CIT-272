@@ -115,6 +115,7 @@ public class MainPanel extends JPanel {
                     handle_operator(s);
                     break;
                 // Equals
+                case "=":
                 case "equals":
                     calculate_expression();
                     break;
