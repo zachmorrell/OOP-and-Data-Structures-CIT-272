@@ -53,6 +53,7 @@ public class GUICalculator {
                 System.exit(0);
             }
         });
+        
         fileMenu.add(exit);
         JMenuItem about = new JMenuItem("About");
         about.addActionListener(new ActionListener() {
