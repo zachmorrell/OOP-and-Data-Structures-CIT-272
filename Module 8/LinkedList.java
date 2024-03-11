@@ -13,34 +13,38 @@ public class LinkedList<T> {
         Node<T> temp = new Node<>(data);
         if (head == null){
             head = temp;
-        }else{
-            Node<T> cursor = head;
-            while (cursor.getNext() != null){
-                cursor = cursor.getNext();
-            }
-            cursor.setNext(temp);
+            return;
         }
+        Node<T> cursor = head;
+        while (cursor.getNext() != null){
+            cursor = cursor.getNext();
+        }
+        cursor.setNext(temp);
     }
 
     public T get(int i){
         if (isEmpty()){
             return(null);
-        }else{
-            int count = 0;
-            Node<T> cursor = head;
-            while (count < i){
-                count++;
-                cursor = cursor.getNext();
-            }
-            return(cursor.getData());
         }
+        if(i>=this.size() || i < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        int count = 0;
+        Node<T> cursor = head;
+        while (count < i){
+            count++;
+            cursor = cursor.getNext();
+        }
+        return(cursor.getData());
     }
 
     public void set(int i, T data){
         // TODO: Module 8 Exercise
         // identical to get() except instead of returning data
-        // you set the data to the parametetr
-
+        // you set the data to the parameter
+        if(i >= this.size() || i < 0) {
+            throw new IndexOutOfBoundsException();
+        }
         int count = 0;
         Node<T> cursor = head;
         while(count < i) {
@@ -54,54 +58,43 @@ public class LinkedList<T> {
         // TODO: Module 8 Exercise
         // if list is empty, return null
         // see other remove() method for hints
-
         if(isEmpty()) {
             return null;
         }
-
+        if(i >= this.size() || i < 0) {
+            throw new IndexOutOfBoundsException();
+        }
         Node<T> cursor = head;
         T removed_data;
-        if(i == 0) {
-            removed_data = cursor.getData();
-            cursor = head.getNext();
-
-        } else {
-
-            int count = 0;
-            Node<T> previous = head;
-            while(count < i) {
-                count++;
-                previous = cursor;
-                cursor = cursor.getNext();
+        int count = 0;
+        while(count < i-1) {
+            if(cursor==null) {
+                return null;
             }
-            removed_data = cursor.getData();
-
-            // If the cursor.getNext isn't null, set previous next to cursor.getNext else null.
-            previous.setNext(((cursor.getNext()!=null) ? cursor.getNext() : null));
+            cursor = cursor.getNext();
+            count++;
         }
+        removed_data = cursor.getData();
+        // If the cursor.getNext isn't null, set previous next to cursor.getNext else null.
+        cursor.setNext(((cursor.getNext().getNext()!=null) ? cursor.getNext().getNext() : null));
         return removed_data;
     }
 
     public T remove(T data){
-        
-        if (isEmpty()){
-            return(null);
-        }else if (head.getData().equals(data)){
-            head = head.getNext();
-            return(data);
-        }else{
-            Node<T> cursor = head.getNext();
-            Node<T> previous = head;
-            while (cursor != null){
-                if (cursor.getData().equals(data)){
-                    previous.setNext(cursor.getNext());
-                    return(data);
-                }
-                cursor = cursor.getNext();
-                previous = previous.getNext();
-            }
-            return(null);
+        if(isEmpty()) {
+            return null;
         }
+        Node<T> cursor = head;
+        Node<T> previous = cursor;
+        while (!cursor.getData().equals(data)) {
+            if(cursor.getData() == null) {
+                return(null);
+            }
+            previous = cursor;
+            cursor = cursor.getNext();
+        }
+        previous.setNext(cursor.getNext());
+        return data;
     }
 
     public boolean contains(T data){
@@ -129,7 +122,7 @@ public class LinkedList<T> {
             count++;
             cursor = cursor.getNext();         
         }
-        return(-1);
+        return -1;
     }
 
     public void clear(){
@@ -168,6 +161,7 @@ public class LinkedList<T> {
 
     public void printList(int index) {
         if(head == null) {
+            System.out.println("List is empty.");
             return;
         }
         Node<T> cursor = head;
@@ -176,5 +170,4 @@ public class LinkedList<T> {
             cursor = cursor.getNext();
         }
     }
-
 }
