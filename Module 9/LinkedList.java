@@ -3,11 +3,14 @@ public class LinkedList<T> {
     private int length;
 
     public LinkedList(){
+        // Initialize node head to null.
         head = null;
+        // Initialize int length to 0.
         length = 0;
     }
 
     public boolean isEmpty(){
+        // Return the logic of head == null.
         return(head == null);
     }
 
@@ -58,9 +61,6 @@ public class LinkedList<T> {
     }
 
     public T remove(int i) {
-        // TODO: Module 8 Exercise
-        // if list is empty, return null
-        // see other remove() method for hints
         if (isEmpty()) {
             return null;
         }
@@ -93,8 +93,6 @@ public class LinkedList<T> {
     }
 
     public T remove(T data){
-		// Write a new version that uses the double link
-		// to remove a Node. old version is commented below
         if(isEmpty() || data == null) {
             return null;
         }
@@ -115,9 +113,6 @@ public class LinkedList<T> {
     }
 
     public boolean contains(T data){
-        // TODO: Module 8 Exercise
-        // very similar to remove() but you just return true if you find it
-        // false otherwise
         if(head == null) {
             return false;
         }
@@ -132,10 +127,6 @@ public class LinkedList<T> {
     }
 
     public int indexOf(T data){
-        // TODO: Module 8 Exercise
-        // identical to contains(), but you return the index where it was found
-        //  returns -1 if it is not found
-        //  use a counter variable
         if(isEmpty()) {
             return -1;
         }
@@ -152,19 +143,17 @@ public class LinkedList<T> {
     }
 
     public void clear(){
-        // TODO: Module 8 Exercise
+        // Clear list by setting head = null;
         head = null;
     }
 
     public int size(){
-        // TODO: Module 8 Exercise
-        // see the get(int) method 
+        // returns the int value of the length of the list.
         return length;
     }
 
     public String toString(){
-        // TODO: Module 8 
-        // Similar to size(), but with accumulating the string
+        // If list is empty, return "List is empty.".
         if(isEmpty()) {
             return "List is empty.";
         }
@@ -190,5 +179,4 @@ public class LinkedList<T> {
             cursor = cursor.getNext();
         }
     }
-
 }

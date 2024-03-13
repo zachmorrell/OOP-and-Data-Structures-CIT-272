@@ -1,74 +1,53 @@
 
 public class Queue<T> {
-    private Node<T> rear;
-    private Node<T> front;
+    private Node<T> rear, front;
     
     public Queue(){
-        rear = null; // what should end be initialized to?
-        front = null; // what should end be initialized to?
+        // Initialize rear and front as null.
+        rear = null; 
+        front = null;
     }
 
-    // Replace ??? with the proper return type
-    // Add parameters with valid types, if necessary
-    public T enqueue(T data){
-		// TODO
-		// add item to rear of the queue
+    public void enqueue(T data){
+		// Defines a new node based on argument data.
         Node<T> new_rear = new Node<>(data);
+        // If the list is empty, add it to the front and rear of the list.
         if(front == null) {
             front = new_rear;
             rear = new_rear;
-        } else {
-            rear.setNext(new_rear);
-            rear = new_rear;
+            // Escape from or end the method.
+            return;
         }
-        return rear.getData();
+        // Old rears next = new rear node.
+        rear.setNext(new_rear);
+        // set current rear = new_rear node.
+        rear = new_rear;
     }
 
-    // Replace ??? with the proper return type
-    // Add parameters with valid types, if necessary
     public T dequeue(){
-		// TODO
-		// remove item from front of queue and return the data
-		//
-        // if Queue is empty
-        //      return null
-        // if it has only one item
-        //
-        // else
-		//
-        if(front == null) {
-            return null;
-        }
-        Node<T> first_item = front;
+        // If list is emppty return null.
+        if(isEmpty()) { return null; }
+        // Node to return the first node.
+        Node<T> dequeued_node = front;
+        // Move front node to the next node in queue.
         front = front.getNext();
-        if(front == null) {
-            rear = null;
-        }
-        return first_item.getData();
+        // Return the data of the dequeued node.
+        return dequeued_node.getData();
     }
 
-    // Replace ??? with the proper return type
-    // Add parameters with valid types, if necessary
     public T look(){
-			  // TODO
-			  // display data at front of queue
-        // if Queue is empty
-        //       return null
+        // If front is not null return it's data, else return null.
         return (front != null) ? front.getData() : null;
     }
 
-    // Replace ??? with the proper return type
-    // Add parameters with valid types, if necessary
     public void clear(){
-        // TODO
+        // Clear list by setting front and rear to null.
         front = null;
         rear = null;
     }
 
-    // Replace ??? with the proper return type
-    // Add parameters with valid types, if necessary
     public boolean isEmpty(){
-        // TODO
+        // Return the logic of: if front == null.
         return front == null;
     }
 }
