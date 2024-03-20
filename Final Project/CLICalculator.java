@@ -5,7 +5,7 @@ import java.util.Scanner;
  * 
  * Zachary Morrell
  * CIT 272 - Object Oriented Programming and Data Structures
- * Milestone 1 - Final Project Starter
+ * Milestone 3 - Final Project Starter
  * Jeremy Doolin
  * 
  */
@@ -13,6 +13,7 @@ public class CLICalculator {
     public static void main(String[] args) {
         command = new Scanner(System.in);
         boolean running = true;
+        Calculator calc = new Calculator();
 
         print_program_details();
         // Milestone 1 - REQ 4.)
@@ -24,9 +25,11 @@ public class CLICalculator {
                 command.close();
             }
             // Milestone 1 - REQ 5.)
-            equation = user_equation.split(" ");
+            String expression_validity = (calc.isValidExpression(user_equation.split(" "))) ? "VALID" : "INVALID";
+            msg("The expression is " +expression_validity);
+            /*equation = user_equation.split(" ");
             //Milestone 1 - REQ 6.)
-            msg("There are " + equation.length + " tokens in the math expression.");
+            msg("There are " + equation.length + " tokens in the math expression.");*/
         }
     }
     // Global variable to hold the current progress of the equation.
