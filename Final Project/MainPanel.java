@@ -17,9 +17,10 @@ public class MainPanel extends JPanel {
 
         // Instance of GUICalculator for passing focus.
         GUICalculator guiCalculator;
+        Calculator calc;
 
         // Arrays for the button labels and buttons.
-        final String[] button_labels = {"AC", "backspace", "divide", "multiply", "7", "8", "9", "subtract", "4", "5", "6", "add", "1", "2", "3", "power", "00", "0", "equals" };
+        final String[] button_labels = {"AC", "backspace", "divide", "multiply", "7", "8", "9", "subtract", "4", "5", "6", "add", "1", "2", "3", "power", "00", "0", "period", "equals" };
         JButton[] button = new JButton[button_labels.length];
 
         // Expression string and label.
@@ -32,6 +33,7 @@ public class MainPanel extends JPanel {
 
         // Set the instance of the GUICalculator to pass focus for the key listener.
         this.guiCalculator = guiCalculator;
+        calc = new Calculator();
 
         // Set and initialize layout properties.
         setLayout(new GridBagLayout());
@@ -90,7 +92,6 @@ public class MainPanel extends JPanel {
     // Modifies the expression based on button or key pressed.
     public void handle_button_press(String s) {
         try {
-            System.out.println(s);
             switch (s) {
                 // Backspace
                 case "<=":
@@ -126,6 +127,11 @@ public class MainPanel extends JPanel {
                         expression += (expression.equals("0") ? "" : s);
                     }
                     break;
+                case ".":
+                    if(calc.valid_period(expression)) {
+                        expression += ".";
+                    }
+                break;
                 default:
                     if(!isNumeric(s)) {
                         System.out.println("Not a number");
@@ -169,6 +175,8 @@ public class MainPanel extends JPanel {
 
     // Will eventually handle calculating the expression.
     private void calculate_expression() {
+        String expression_validity = (calc.isValidExpression(expression.split(" "))) ? "VALID" : "INVALID";        
+        System.out.println("The expression is " + expression_validity);
         System.out.println(expression);
     }
 
