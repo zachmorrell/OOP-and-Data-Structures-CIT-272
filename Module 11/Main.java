@@ -9,8 +9,12 @@ public class Main {
         family.insert("Danny");
         family.insert("Nick");
         family.insert("Hayden");
-        family.print();
         System.out.println();
-        System.out.println(family.search("alexis"));
+        System.out.println(family.search("Harold") ? "Harold Exists!":"Harold doesn't exist!");
+        System.out.println(family.search("Leo") ? "Leo Exists!":"Leo doesn't exist!");
+        System.out.println();
+        family.preOrderPrint();
+        family.inOrderPrint();
+        family.postOrderPrint();
     }
 }
